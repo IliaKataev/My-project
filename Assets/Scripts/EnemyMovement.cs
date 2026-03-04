@@ -98,7 +98,7 @@ public class EnemyMovement : MonoBehaviour
                     if (playerRb != null)
                     {
                         // прыжок игрока от врага
-                        playerRb.velocity = new Vector2(playerRb.velocity.x, 10f);
+                        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 10f);
                     }
                 }
                 else if (Mathf.Abs(contact.normal.x) > 0.5f)
