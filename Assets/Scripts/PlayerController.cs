@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float _velocity;
     private bool _isJumping;
 
+    private Vector3 _originalScale;
+
     void Update()
     {
         _body.SetLocomotionVelocity(_velocity);
@@ -34,11 +36,19 @@ public class PlayerController : MonoBehaviour
     {
         var value = context.ReadValue<Vector2>();
         _velocity = value.x * _speed;
+
+        if(value.x != 0)
+        {
+            var scale = _originalScale;
+            scale.x = value.x > 0 ? _originalScale.x : -_originalScale.x;
+            transform.localScale = scale;
+        }
     }
 
     private void Awake()
     {
         _jumpSpeed = Mathf.Sqrt(2 * _jumpHeight * Physics2D.gravity.magnitude * _body.GravityFactor);
+        _originalScale = transform.localScale;
     }
 
     public void OnJump(InputAction.CallbackContext context)
