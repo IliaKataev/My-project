@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\unity\\unityprojects\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\my project\\assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\unity\\unityprojects\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\my project\\assets\\scripts\\levelloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\assets\\scripts\\character body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\unity\\unityprojects\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\my project\\assets\\scripts\\character body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\assets\\scripts\\characterstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characterstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\unity\\unityprojects\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\my project\\assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\assets\\scripts\\levelloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\assets\\scripts\\enemymovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,6 +51,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Character Body.cs",
+              "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\Character Body.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character Body.cs",
+              "ToolTip": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\Character Body.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character Body.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwB8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T15:53:30.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LevelLoader.cs",
               "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\LevelLoader.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelLoader.cs",
@@ -58,12 +71,11 @@
               "RelativeToolTip": "Assets\\Scripts\\LevelLoader.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T15:52:58.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T15:52:58.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\MainMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu.cs",
@@ -76,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "CharacterState.cs",
               "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\CharacterState.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterState.cs",
@@ -84,31 +96,21 @@
               "RelativeToolTip": "Assets\\Scripts\\CharacterState.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T14:43:43.314Z"
+              "WhenOpened": "2026-03-04T14:43:43.314Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Character Body.cs",
-              "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\Character Body.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Character Body.cs",
-              "ToolTip": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\Character Body.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Character Body.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwFMAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T14:41:51.338Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "D:\\Unity\\UnityProjects\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\My project\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAQwCoAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAuwGMAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-02T14:58:19.068Z"
+              "WhenOpened": "2026-03-02T14:58:19.068Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

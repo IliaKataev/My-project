@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterBody : MonoBehaviour
@@ -23,8 +24,22 @@ public class CharacterBody : MonoBehaviour
             : value;
     }
 
-    public CharacterState State { get; private set; }
+    private CharacterState _state;
+
+    public CharacterState State
+    {
+        get => _state;
+        private set
+        {
+            Debug.Log("State changed " + _state + " " + value);
+            var previous = _state;
+            _state = value;
+            StateChanged?.Invoke(previous, value);
+        }
+    }
     [Min(0)][field: SerializeField]public float GravityFactor { get; private set; } = 1f;
+
+    public event Action<CharacterState, CharacterState> StateChanged;
 
     private void Awake()
     {
@@ -84,4 +99,6 @@ public class CharacterBody : MonoBehaviour
         Velocity = new Vector2(_velocity.x, jumpSpeed);
         State = CharacterState.Airborne;
     }
+
+
 }

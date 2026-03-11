@@ -2,6 +2,7 @@ using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [Min(0)]
     [SerializeField] public float _jumpHeight = 2.5f;
+
+    [SerializeField] private Animator animator;
 
     private float _jumpSpeed;
 
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _body.SetLocomotionVelocity(_velocity);
+
+        animator.SetFloat("Speed", Mathf.Abs(_velocity));
 
         if(_body.State == CharacterState.Grounded)
         {
@@ -88,5 +93,27 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnStateChanged(CharacterState previous, CharacterState current)
+    {
+        Debug.Log("player state event" + current + " и предыдущ " + previous);
+
+        animator.SetBool("Grounded", current == CharacterState.Grounded);
+
+        if (current == CharacterState.Grounded)
+        {
+            animator.SetTrigger("Land");
+        }
+    }
+
+    private void OnEnable()
+    {
+        _body.StateChanged += OnStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        _body.StateChanged -= OnStateChanged;
     }
 }
