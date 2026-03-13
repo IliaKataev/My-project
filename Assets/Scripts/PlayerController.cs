@@ -1,59 +1,58 @@
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterBody _body;
-
-    [Min(0)]
-    [SerializeField] public float _speed = 5;
-
-    [Min(0)]
-    [SerializeField] public float _jumpHeight = 2.5f;
-
     [SerializeField] private Animator animator;
 
-    private float _jumpSpeed;
+    [Min(0)][SerializeField] private float _speed = 5f;
+    [Min(0)][SerializeField] private float _jumpHeight = 2.5f;
+    [Min(0)][SerializeField] private float _stopJumpFactor = 2.5f;
 
-    [Min(0)]
-    [SerializeField] public float _stopJumpFactor = 2.5f;
+    private float _velocity;              // горизонтальная скорость
+    private bool _isJumping;              // флаг прыжка
+    private Vector3 _originalScale;       // для поворота персонажа
+    private float _jumpSpeed;             // рассчитанная скорость прыжка
+    private bool _wantRun;                // хотим ли двигаться вправо/влево
 
-    private float _velocity;
-    private bool _isJumping;
-
-    private Vector3 _originalScale;
-
-    void Update()
+    private void Awake()
     {
+        _originalScale = transform.localScale;
+        _jumpSpeed = Mathf.Sqrt(2 * _jumpHeight * Physics2D.gravity.magnitude * _body.GravityFactor);
+    }
+
+    private void Update()
+    {
+        // Двигаем тело персонажа
         _body.SetLocomotionVelocity(_velocity);
 
-        animator.SetFloat("Speed", Mathf.Abs(_velocity));
+        // Определяем, хотим ли бегать
+        _wantRun = Mathf.Abs(_velocity) > 0.1f;
 
-        if(_body.State == CharacterState.Grounded)
-        {
+        // Обновляем параметры Animator
+        animator.SetFloat("Speed", Mathf.Abs(_velocity));
+        animator.SetBool("Grounded", _body.State == CharacterState.Grounded);
+        animator.SetBool("wantRun", _wantRun && _body.State == CharacterState.Grounded);
+
+        // Флаг прыжка сбрасываем при касании земли
+        if (_body.State == CharacterState.Grounded)
             _isJumping = false;
-        }
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<Vector2>();
+        Vector2 value = context.ReadValue<Vector2>();
         _velocity = value.x * _speed;
 
-        if(value.x != 0)
+        // Поворачиваем персонажа
+        if (value.x != 0)
         {
             var scale = _originalScale;
             scale.x = value.x > 0 ? _originalScale.x : -_originalScale.x;
             transform.localScale = scale;
         }
-    }
-
-    private void Awake()
-    {
-        _jumpSpeed = Mathf.Sqrt(2 * _jumpHeight * Physics2D.gravity.magnitude * _body.GravityFactor);
-        _originalScale = transform.localScale;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -84,9 +83,7 @@ public class PlayerController : MonoBehaviour
         if (_isJumping && velocity.y > 0)
         {
             _isJumping = false;
-            _body.Velocity = new Vector2(
-                velocity.x,
-                velocity.y / _stopJumpFactor);
+            _body.Velocity = new Vector2(velocity.x, velocity.y / _stopJumpFactor);
         }
     }
 
@@ -97,11 +94,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnStateChanged(CharacterState previous, CharacterState current)
     {
-        Debug.Log("player state event" + current + " и предыдущ " + previous);
-
-        animator.SetBool("Grounded", current == CharacterState.Grounded);
-
-        if (current == CharacterState.Grounded)
+        // Лэндинг триггер
+        if (current == CharacterState.Grounded && previous == CharacterState.Airborne)
         {
             animator.SetTrigger("Land");
         }

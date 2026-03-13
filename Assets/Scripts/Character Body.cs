@@ -31,7 +31,7 @@ public class CharacterBody : MonoBehaviour
         get => _state;
         private set
         {
-            Debug.Log("State changed " + _state + " " + value);
+            //Debug.Log("State changed " + _state + " " + value);
             var previous = _state;
             _state = value;
             StateChanged?.Invoke(previous, value);
