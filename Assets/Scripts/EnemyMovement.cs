@@ -1,123 +1,114 @@
-﻿using System;
-using UnityEditor.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float speed = 2f;
-    public float groundCheckDistance = 0.6f;
     public LayerMask groundLayer;
+    public float groundCheckDistance = 0.1f;
+
+    [Header("Player Interaction")]
+    public LayerMask playerLayer;
+    public float bounceForce = 10f; // прыжок игрока при убийстве врага сверху
+    public int contactDamage = 1;
 
     private Rigidbody2D rb;
+    private BoxCollider2D col;
     private bool moveRight = true;
 
-
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
-        CheckEdge();
-    }
-
-    private void CheckEdge()
-    {
-        float direction = moveRight ? 1f : -1f;
-
-        BoxCollider2D col = GetComponent<BoxCollider2D>();
-
-        Vector2 rayOrigin = new Vector2(
-            col.bounds.center.x + direction * col.bounds.extents.x,
-            col.bounds.min.y);
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            rayOrigin,
-            Vector2.down,
-            groundCheckDistance,
-            groundLayer);
-
-
-        if (hit.collider == null)
-        {
-            Flip();
-        }
-
-        Debug.DrawRay(rayOrigin, Vector2.down * groundCheckDistance, Color.red);
+        CheckEdges();
+        CheckPlayerCollision();
     }
 
     private void Move()
     {
         float direction = moveRight ? 1f : -1f;
-        Vector2 targetPos = rb.position + Vector2.right * direction * speed * Time.fixedDeltaTime;
-        rb.MovePosition(targetPos);
+        Vector2 velocity = new Vector2(direction * speed, 0f); // движение по X
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void CheckEdges()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        float direction = moveRight ? 1f : -1f;
+
+        Vector2 rayOrigin = new Vector2(
+            col.bounds.center.x + direction * col.bounds.extents.x,
+            col.bounds.min.y);
+
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, groundCheckDistance, groundLayer);
+
+        // если края нет → повернуть
+        if (hit.collider == null)
         {
-            foreach (ContactPoint2D contact in collision.contacts)
-            {   
-                if(contact.normal.y > 0.5f)
+            Flip();
+        }
+
+        // проверка столкновения со стеной вперед
+        RaycastHit2D wallHit = Physics2D.Raycast(rayOrigin, Vector2.right * direction, col.size.x / 2f, groundLayer);
+        if (wallHit.collider != null)
+        {
+            Flip();
+        }
+
+        Debug.DrawRay(rayOrigin, Vector2.down * groundCheckDistance, Color.red);
+        Debug.DrawRay(rayOrigin, Vector2.right * direction * col.size.x / 2f, Color.blue);
+    }
+
+    private void CheckPlayerCollision()
+    {
+        Collider2D playerHit = Physics2D.OverlapBox(transform.position, col.size, 0f, playerLayer);
+        if (playerHit != null)
+        {
+            Vector2 normal = (playerHit.transform.position - transform.position).normalized;
+
+            if (normal.y > 0.5f)
+            {
+                // игрок сверху → убиваем врага
+                Destroy(gameObject);
+
+                Rigidbody2D playerRb = playerHit.GetComponent<Rigidbody2D>();
+                if (playerRb != null)
                 {
-                    Destroy(gameObject);
-                    Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-                    if (playerRb != null)
-                    {
-                        // прыжок игрока от врага
-                        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 10f);
-                    }
-                }
-                if (Math.Abs(contact.normal.x) > 0.5f)
-                {
-                    if ((moveRight && contact.normal.x < 0f) ||
-                        (!moveRight && contact.normal.x > 0f))
-                    {
-                        Flip();
-                    }
+                    playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, bounceForce); // бесконечный прыжок
                 }
             }
-        }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            foreach (ContactPoint2D contact in collision.contacts)
+            else
             {
-                // contact.normal — направление контакта относительно врага
-                // normal.y > 0.5 → игрок сверху
-                // normal.x > 0.5 или < -0.5 → удар сбоку
-
-                if (contact.normal.y > 0.5f)
-                {
-                    // Игрок сверху → убиваем врага
-                    Destroy(gameObject); // или любая логика смерти врага
-                    Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-                    if (playerRb != null)
-                    {
-                        // прыжок игрока от врага
-                        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 10f);
-                    }
-                }
-                else if (Mathf.Abs(contact.normal.x) > 0.5f)
-                {
-                    // Игрок сбоку → игрок умирает
-                    collision.gameObject.GetComponent<PlayerController>().Die();
-                }
+                // сбоку → наносим урон игроку
+                Health health = playerHit.GetComponent<Health>();
+                if (health != null)
+                    health.TakeDamage(contactDamage); /// сильно быстро наносится урон + отбрасывание или временная неуязвимость
             }
         }
     }
-
-
 
     private void Flip()
     {
         moveRight = !moveRight;
-
         Vector3 scale = transform.localScale;
-        scale.x *= -1;
+        scale.x *= -1f;
         transform.localScale = scale;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (col != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(transform.position, col.size);
+        }
     }
 }
